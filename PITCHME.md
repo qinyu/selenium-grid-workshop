@@ -95,15 +95,15 @@ What's the Bottleneck of Automation Infrastructure?
 
 ### Selenium WebDriver Summary
 
-- :thumbsdown: Type, version and number of browsers are limited(can't cover compatibility fully)
-- :thumbsdown: Can not scale(especially for CI)
-- :thumbsup: Convinient to debug tests as browser is on the same machine  <!-- .element: class="fragment" -->
+- Type, version and number of browsers are limited(can't cover compatibility fully)
+- Can not scale(especially for CI)
+- Convinient to debug tests as browser is on the same machine  <!-- .element: class="fragment" -->
 
 +++
 
 ### Selenium Grid
 
-![selenium grid](http://www.seleniumframework.com/wp-content/uploads/2015/01/Overall_GRID_architecture.png)
++++?image=http://www.seleniumframework.com/wp-content/uploads/2015/01/Overall_GRID_architecture.png
 
 +++
 
@@ -206,8 +206,19 @@ though Selenium Grid Infrastructure is setup already?
 
 ### Scalable Tests
 
-FIRST
+**F.I.R.S.T** Principles of Unit Testing
 
+**FAST**<!-- .element: class="fragment" --> **ISOLATED/INDEPENDENT**<!-- .element: class="fragment" --> **REPEATABLE**<!-- .element: class="fragment" --> **SELF-VALIDATING**<!-- .element: class="fragment" --> **THOROUGH/TIMELY**<!-- .element: class="fragment" -->
+
++++ 
+
+## Isolated & Repeatable
+
+- A test should NOT depend on any data in the environment/instance in which it is running.
+- Deterministic results - should yield the same results every time and at every location where they run.
+- No dependency on date/time or random functions output.
+- Each test should setup or arrange it's own data.
+- No order-of-run dependency. They should pass or fail the same way in suite or when run individually.
 
 
 +++
@@ -269,6 +280,10 @@ Is there any other way for paralleling tests?
 
 ---
 
+### Docker
+
++++?image=https://docs.docker.com/engine/article-img/architecture.svg
+
 ### Docker 101
 
 - **docker images -a** command that lists all the images
@@ -320,7 +335,7 @@ docker run -d --link selenium-hub:hub -P -p 12346:5900 --name chrome selenium/no
 
 ### Summary
 - Selenium Grid provides scalable automation
-- Keep in mind that test must be independent and isolated when implementing
+- Keep in mind that test must be repeatable and isolated when implementing
 - Leverage Docker to automatically scale Selenium Grid
 
 
