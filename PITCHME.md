@@ -275,12 +275,15 @@ Is there any other way for paralleling tests?
 - **docker run** Run a command in a new container
 - **docker -d** command that used along with docker run that runs container in background and prints container ID
 - **docker -p** command to explicitly map a single port or range of ports.
+
++++ 
+### Docker 101(Cont.)
 - **docker --link <name or id>**:alias name is the name of the container we’re linking to and alias is an alias for the link name.
 - **docker ps** :Shows running containers by default. 
 - **docker kill**: Kill one or more running containers
 - **docker rm**: Remove containers
 
----
++++
 
 ### Selenium Grid Docker Images
 
@@ -303,14 +306,11 @@ docker run -d -p 5000:4444 --name selenium-hub  -P selenium/hub
 docker run -d --link selenium-hub:hub -P -p 12346:5900 --name chrome selenium/node-chrome-debug
 ```
 
-+++?gist=a513d69045a3f303301a3c6fe1a7a5b5 
++++
 
 ### Or Docker Compose
 
-```sh
-```
-
-+++ 
++++?gist=a513d69045a3f303301a3c6fe1a7a5b5 
 
 ---
 
