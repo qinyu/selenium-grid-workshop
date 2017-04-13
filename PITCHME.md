@@ -176,7 +176,7 @@ But..<!-- .element: class="fragment" -->
 
 ### Discussion
 
-[selenium webdriver](http://www.seleniumframework.com/wp-content/uploads/2015/01/selenium-rc_architecturepng.png)
+![selenium webdriver](http://www.seleniumframework.com/wp-content/uploads/2015/01/selenium-rc_architecturepng.png)
 
 +++ 
 
@@ -300,14 +300,14 @@ Configuration.browser = BrowserType.FIREFOX;
 Configuration.remote = "http://localhost:5000/wd/hub";
 ```
 
---- 
+---
 
 ### One More Thing
 
 **Custom Selenium Grid**
 
-- Proxy: 
-- CapabilityMatcher: Matching
+- Proxy: Custom logic at each of the nodes such as “auto restart” (or) “start/stop video recording” etc.
+- CapabilityMatcher: Decides on which test should be routed to which node
 - Prioritizer: Used to sort queued new Session requests
 - Servlets: Grid plugins
 
@@ -393,8 +393,6 @@ How much does it coast to maintain Selenium Grid on cloud?
 
 +++
 
-### Question(Cont.)
-
 [Distributed Automation Using Selenium Grid/AWS/Autoscaling](
 https://www.youtube.com/watch?v=cbIfU1fvGeo)
 
@@ -405,7 +403,7 @@ https://www.youtube.com/watch?v=cbIfU1fvGeo)
 > Total AWS cost for Batch Processing Topology (~$800/per month)  
 <!-- .element: class="fragment" -->
 
-Or...<!-- .element: class="fragment" -->
+And...<!-- .element: class="fragment" -->
 
 ---
 
@@ -426,6 +424,7 @@ https://stackshare.io/stackups/browserstack-vs-sauce-labs-vs-testingbot
 ---
 
 ### Appendix
+
 List of tooling required(need downloaded)  
 **JDK(1.7+)**  
 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html  
@@ -436,8 +435,6 @@ https://goo.gl/uTXEJ1
 http://www.seleniumhq.org/download/  
 
 +++
-
-### Requirements(Cont.)
 
 **Browsers**
    - Firefox: https://www.google.com/chrome/
