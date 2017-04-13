@@ -1,4 +1,4 @@
-# Selenium Grid Workshop
+# Selenium Grid ~~Workshop~~<!-- .element: class="fragment" -->Training<!-- .element: class="fragment" -->
 
 https://gitpitch.com/qinyu/selenium-grid-workshop/master
 
