@@ -1,15 +1,15 @@
-# Selenium Grid ~~Workshop~~<!-- .element: class="fragment" -->Training<!-- .element: class="fragment" -->
+## Selenium Grid ~~Workshop~~Training
 
 https://gitpitch.com/qinyu/selenium-grid-workshop/master
 
 ---
 
 ### Agenda
-1. Selenium WebDriver Intro
-2. Selenium Grid Intro
-3. Scalable Tests
-4. Scale Selenium Grid with Docker
-5. Demo & Summary
+1. Selenium WebDriver
+2. Scalable Tests
+3. Selenium Grid
+4. Scale Selenium Grid
+5. Summary
 
 ---
 
@@ -80,12 +80,104 @@ $("#num1").shouldHave(text("1")).click();
 $("textinput").shouldHave(value("2"));
 ```
 
---- 
+---
+
+### Scalable Tests
+
+**F.I.R.S.T** Principles of Unit Testing
+
+**FAST**<!-- .element: class="fragment" --> **ISOLATED/INDEPENDENT**<!-- .element: class="fragment" --> **REPEATABLE**<!-- .element: class="fragment" --> **SELF-VALIDATING**<!-- .element: class="fragment" --> **THOROUGH/TIMELY**<!-- .element: class="fragment" -->
+
+https://pragprog.com/magazines/2012-01/unit-tests-are-first <!-- .element: class="fragment" -->
++++ 
+
+## Isolated & Repeatable
+
+- A test should NOT depend on any data or resource in the environment/instance in which it is running.
+- Deterministic results - should yield the same results every time and at every location where they run.
+- Each test should setup or arrange it's own data/resources.
+- No order-of-run dependency. They should pass or fail the same way in suite or when run individually.
+
+In order to parallel tests to get quick feedback<!-- .element: class="fragment" -->
+
++++
+
+### Practice 3
+
+Parallel scalable tests
+
++++
+
+### Take Care of Resource
+
+Using JUnit "Setup/Teardown"
+
+```java
+@Before
+public void setUp() throws Exception {
+  DesiredCapabilities capabilities = new DesiredCapabilities();
+  capabilities.setBrowserName(BrowserType.CHROME);
+  driver = new RemoteWebDriver(new URL("http://localhost:5000/wd/hub"), capabilities);
+}
+@After
+public void tearDown() throws Exception {
+  driver.quit();
+}
+```
+
++++
+
+### Implement More Tests 
+
+**Scenarios**:  
+1+1 = 2  
+1-1 = 0  
+1*1 = 1  
+1/1 = 1  
+...
+
++++
+
+### Parallel Tests
+
+Using `maven-surefire-plugin` parallel feature
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.12.4</version>
+            <configuration>
+                <parallel>methods</parallel>
+                <threadCount>5</threadCount>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+> **Attention**: Take concurrency problem carefully!
+
+---
+
+### Question
+
+Is there any other way for paralleling tests?
+
+> Group tests and run separately in different process  
+> Take Cucumber for example, you can group test with tags and run on different PCs
+<!-- .element: class="fragment" -->
+
+But..<!-- .element: class="fragment" -->
+
+---?image=http://www.seleniumframework.com/wp-content/uploads/2015/01/selenium-rc_architecturepng.png
 
 ### Discussion
 
 Assumptions:
-1. Already have PCs with enough performance(eg, 4 CPU cores with 32GB memory)
+1. Already have PC with enough performance(eg, 4 CPU cores with 32GB memory)
 2. Both functionality and compatibility must be covered as much as possible
 3. Get tests' feedback as soon as possible
 
@@ -109,15 +201,25 @@ What's the Bottleneck of Automation Infrastructure?
 
 ### Terminology - Hub
 
+- The intermediary and manager
+- Accepts requests to run tests
+- Allocates Test Slots to nodes
+- Takes instructions directly from client, and executes them remotely on nodes
+- The Hub only manages threads—it performs zero browser work
+
 +++
 
 ### Terminology - Node
 
-+++
+- Registers itself to Hub listed in config
+- Communicates its config to the Hub at registration time
+- Receives json wire protocol instructions from the Hub
+- Executes instructions, keeping threads separated
+- The Node does not evaluate, make judgments, or control anything: it only receives and executes instructions (and throws exceptions)
 
 ---
 
-### Practice 3
+### Practice 4
 
 Setup "Remote" and "Distributed" Selenium Grid/Node  
 
@@ -151,6 +253,22 @@ java -jar selenium-server-standalone-3.0.1.jar -role node -help
 ### Node Config File
 
 ```json
+{
+    "capabilities": [{
+        "browserName": "chrome",
+        "maxInstances": 5
+    },],
+    "configuration": {
+        "_comment": "Configuration for Node",
+        "cleanUpCycle": 2000,
+        "proxy": "org.openqa.grid.selenium.proxy.WebDriverRemoteProxy",
+        "port": 5555,
+        "host": "localhost",
+        "register": true,
+        "hubPort": 4444,
+        "maxSessions": 5
+    }
+}
 ```
 
 +++
@@ -184,106 +302,9 @@ Configuration.remote = "http://localhost:5000/wd/hub";
 **Custom Selenium Grid**
 
 - Proxy
-- Matcher
-- Prioritizer
-- Servlets
-
----
-
-### Question
-
-What would prevent us achieving quick feedback in previous demo 
-though Selenium Grid Infrastructure is setup already?
-
-+++ 
-
-### Scalable Tests
-
-**F.I.R.S.T** Principles of Unit Testing
-
-**FAST**<!-- .element: class="fragment" --> **ISOLATED/INDEPENDENT**<!-- .element: class="fragment" --> **REPEATABLE**<!-- .element: class="fragment" --> **SELF-VALIDATING**<!-- .element: class="fragment" --> **THOROUGH/TIMELY**<!-- .element: class="fragment" -->
-
-https://pragprog.com/magazines/2012-01/unit-tests-are-first <!-- .element: class="fragment" -->
-+++ 
-
-## Isolated & Repeatable
-
-- A test should NOT depend on any data in the environment/instance in which it is running.
-- Deterministic results - should yield the same results every time and at every location where they run.
-- No dependency on date/time or random functions output.
-- Each test should setup or arrange it's own data.
-- No order-of-run dependency. They should pass or fail the same way in suite or when run individually.
-
-
-+++
-
-### Practice 4
-
-Make tests scalable
-
-+++
-
-### Using "Setup/Teardown"
-
-```java
-  @Before
-  public void setUp() throws Exception {
-    DesiredCapabilities capabilities = new DesiredCapabilities();
-    capabilities.setBrowserName(BrowserType.CHROME);
-    driver = new RemoteWebDriver(new URL("http://localhost:5000/wd/hub"),capabilities);
-  }
-
-  @After
-  public void tearDown() throws Exception {
-    driver.quit();
-  }
-```
-
-+++
-
-### Implement More Tests 
-
-**Scenario**:  
-1+1 = 2  
-1-1 = 0  
-1*1 = 1  
-1/1 = 1  
-...
-
-+++
-
-### Run Tests In Parallel
-
-Configuration of `maven-surefire-plugin`
-
-```xml
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>2.12.4</version>
-    <executions>
-        <execution>
-            <id>cucumber tests</id>
-            <phase>integration-test</phase>
-            <goals>
-                <goal>test</goal>
-            </goals>
-            <configuration>
-                <threadCount>5</threadCount>
-                <includes>
-                    <include>**/*IT.java</include>
-                </includes>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-```
-
----
-
-### Discussion
-
-Is there any other way for paralleling tests?
+- Matcher:
+- Prioritizer: Used to sort queued new Session requests
+- Servlets: Grid plugins
 
 ---
 
@@ -323,13 +344,12 @@ And... <!-- .element: class="fragment" -->
 
 ### Selenium Grid Docker Images
 
-
 - **selenium/hub**: Image for running a Selenium Grid Hub
 - **selenium/node-chrome-debug**: Selenium node with Chrome installed and runs a VNC server, needs to be connected to a Selenium Grid Hub
 - **selenium/node-firefox-debug**: Selenium node with Firefox installed and runs a VNC server, needs to be connected to a Selenium Grid Hub
 - ...
 
-
+https://github.com/SeleniumHQ/docker-selenium<!-- .element: class="fragment" -->
 
 ---
 
@@ -383,6 +403,8 @@ https://www.youtube.com/watch?v=cbIfU1fvGeo)
 >   ~$800/per month  
 <!-- .element: class="fragment" -->
 
+Or...<!-- .element: class="fragment" -->
+
 ---
 
 ### Testing Cloud
@@ -390,15 +412,14 @@ https://www.youtube.com/watch?v=cbIfU1fvGeo)
 **BrowserStack** vs. **Sauce Labs** vs. **TestingBot**
 https://stackshare.io/stackups/browserstack-vs-sauce-labs-vs-testingbot
 
-Selenium Compatibale!
+**Selenium Compatibale!**<!-- .element: class="fragment" -->`
 
 ---
 
 ### Summary
 - Selenium Grid provides scalable automation
 - Keep in mind that test must be repeatable and isolated when implementing
-- Leverage Docker to automatically scale Selenium Grid
-
+- Leverage Docker and Cloud to automatically scale Selenium Grid
 
 ---
 

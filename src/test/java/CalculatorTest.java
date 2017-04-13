@@ -4,12 +4,11 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -23,15 +22,16 @@ public class CalculatorTest {
   public void setUp() throws Exception {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setBrowserName(BrowserType.CHROME);
-    driver = new RemoteWebDriver(new URL("http://localhost:5000/wd/hub"),capabilities);
-//    driver = new FirefoxDriver(new DesiredCapabilities());
+//    driver = new RemoteWebDriver(new URL("http://localhost:5000/wd/hub"), capabilities);
+    driver = new FirefoxDriver(new DesiredCapabilities());
 
     driver.get("https://demo.tds.airast.org/TDSCalculator/TDSCalculator.html?mode=ScientificInv");
   }
 
   @After
   public void tearDown() throws Exception {
-    driver.quit();
+    if (driver != null)
+      driver.quit();
   }
 
   @Test
