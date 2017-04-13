@@ -21,7 +21,7 @@ https://gitpitch.com/qinyu/selenium-grid-workshop/master
 
 ### Practice 1
 
-Selenium Environment Preparation  
+Selenium Environment Setup  
 
 +++ 
 
@@ -35,7 +35,7 @@ Selenium Environment Preparation
 
 ### Practice 2
 
-Write a selenium test  
+Write a selenium test for online calculator  
 
 * **Scenario**: 1+1 = 2  
 * **AUT**: https://demo.tds.airast.org/TDSCalculator/TDSCalculator.html?mode=ScientificInv  
@@ -121,7 +121,6 @@ What's the Bottleneck of Automation Infrastructure?
 
 Setup "Remote" and "Distributed" Selenium Grid/Node  
 
-**Tips:**
 https://github.com/SeleniumHQ/selenium/wiki/Grid2
 
 +++
@@ -204,7 +203,7 @@ though Selenium Grid Infrastructure is setup already?
 
 **FAST**<!-- .element: class="fragment" --> **ISOLATED/INDEPENDENT**<!-- .element: class="fragment" --> **REPEATABLE**<!-- .element: class="fragment" --> **SELF-VALIDATING**<!-- .element: class="fragment" --> **THOROUGH/TIMELY**<!-- .element: class="fragment" -->
 
-https://pragprog.com/magazines/2012-01/unit-tests-are-first <<!-- .element: class="fragment" -->
+https://pragprog.com/magazines/2012-01/unit-tests-are-first <!-- .element: class="fragment" -->
 +++ 
 
 ## Isolated & Repeatable
@@ -292,8 +291,8 @@ Is there any other way for paralleling tests?
 
 Is there any tool to ease maintaining work?
 
-> Selenium Grid Extras: https://github.com/groupon/Selenium-Grid-Extras  
-> Jenkins Selenium Plugin: https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin 
+>[Selenium Grid Extras](https://github.com/groupon/Selenium-Grid-Extras)  
+>[Jenkins Selenium Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin)
 <!-- .element: class="fragment" -->
 
 And... <!-- .element: class="fragment" -->
@@ -323,11 +322,14 @@ And... <!-- .element: class="fragment" -->
 +++
 
 ### Selenium Grid Docker Images
-https://pragprog.com/magazines/2012-01/unit-tests-are-first  
+
 
 - **selenium/hub**: Image for running a Selenium Grid Hub
 - **selenium/node-chrome-debug**: Selenium node with Chrome installed and runs a VNC server, needs to be connected to a Selenium Grid Hub
 - **selenium/node-firefox-debug**: Selenium node with Firefox installed and runs a VNC server, needs to be connected to a Selenium Grid Hub
+- ...
+
+
 
 ---
 
@@ -356,10 +358,8 @@ docker run -d --link selenium-hub:hub -P -p 12346:5900 --name chrome selenium/no
 
 Scale Grid on demand  
 
-> zalenium:
-https://github.com/zalando/zalenium  
->  Selenium Grid Scaler:
-https://github.com/mhardin/SeleniumGridScaler 
+>[zalenium](https://github.com/zalando/zalenium)  
+>[Selenium Grid Scaler](https://github.com/mhardin/SeleniumGridScaler)  
 <!-- .element: class="fragment" -->
 
 ---
@@ -386,8 +386,11 @@ https://www.youtube.com/watch?v=cbIfU1fvGeo)
 ---
 
 ### Testing Cloud
-**BrowserStack** vs. **Sauce Labs** vs. **Rainforest QA**
+
+**BrowserStack** vs. **Sauce Labs** vs. **TestingBot**
 https://stackshare.io/stackups/browserstack-vs-sauce-labs-vs-testingbot
+
+Selenium Compatibale!
 
 ---
 
