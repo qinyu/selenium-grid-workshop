@@ -172,7 +172,13 @@ Is there any other way for paralleling tests?
 
 But..<!-- .element: class="fragment" -->
 
----?image=http://www.seleniumframework.com/wp-content/uploads/2015/01/selenium-rc_architecturepng.png
+---
+
+### Discussion
+
+[selenium webdriver](http://www.seleniumframework.com/wp-content/uploads/2015/01/selenium-rc_architecturepng.png)
+
++++ 
 
 ### Discussion
 
