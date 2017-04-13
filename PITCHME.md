@@ -98,9 +98,9 @@ https://pragprog.com/magazines/2012-01/unit-tests-are-first <!-- .element: class
 - Each test should setup or arrange it's own data/resources.
 - No order-of-run dependency. They should pass or fail the same way in suite or when run individually.
 
-In order to parallel tests to get quick feedback<!-- .element: class="fragment" -->
+>In order to parallel tests to get quick feedback<!-- .element: class="fragment" -->
 
-+++
+---
 
 ### Practice 3
 
@@ -259,7 +259,6 @@ java -jar selenium-server-standalone-3.0.1.jar -role node -help
         "maxInstances": 5
     },],
     "configuration": {
-        "_comment": "Configuration for Node",
         "cleanUpCycle": 2000,
         "proxy": "org.openqa.grid.selenium.proxy.WebDriverRemoteProxy",
         "port": 5555,
@@ -301,8 +300,8 @@ Configuration.remote = "http://localhost:5000/wd/hub";
 
 **Custom Selenium Grid**
 
-- Proxy
-- Matcher:
+- Proxy: 
+- CapabilityMatcher: Matching
 - Prioritizer: Used to sort queued new Session requests
 - Servlets: Grid plugins
 
@@ -314,7 +313,6 @@ Is there any tool to ease maintaining work?
 
 >[Selenium Grid Extras](https://github.com/groupon/Selenium-Grid-Extras)  
 >[Jenkins Selenium Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin)
-<!-- .element: class="fragment" -->
 
 And... <!-- .element: class="fragment" -->
 
@@ -380,7 +378,6 @@ Scale Grid on demand
 
 >[zalenium](https://github.com/zalando/zalenium)  
 >[Selenium Grid Scaler](https://github.com/mhardin/SeleniumGridScaler)  
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -399,8 +396,7 @@ https://www.youtube.com/watch?v=cbIfU1fvGeo)
 > 1 Medium box (~$8000/per month)  
 > 1 Large box (~$10000/per month)  
 > 1 VM (~$2000/per month)  
-> Total AWS cost for Batch Processing Topology  
->   ~$800/per month  
+> Total AWS cost for Batch Processing Topology (~$800/per month)  
 <!-- .element: class="fragment" -->
 
 Or...<!-- .element: class="fragment" -->
