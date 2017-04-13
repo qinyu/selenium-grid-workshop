@@ -1,4 +1,4 @@
-## Selenium Grid ~~Workshop~~Training
+## Selenium Grid Workshop/Training
 
 https://gitpitch.com/qinyu/selenium-grid-workshop/master
 
@@ -166,9 +166,14 @@ Using `maven-surefire-plugin` parallel feature
 
 Is there any other way for paralleling tests?
 
-> Group tests and run separately in different process  
-> Take Cucumber for example, you can group test with tags and run on different PCs
+- Group tests and run separately in different process  <!-- .element: class="fragment" -->
+  - Take Cucumber for example, you can group test with tags and run with maven plugin `cucumber-jvm-parallel-plugin`  <!-- .element: class="fragment" -->
+- Need merge separate tests reports  <!-- .element: class="fragment" -->
+  - Take Cucumber for example, you may use `cucumber-reporting` library
 <!-- .element: class="fragment" -->
+
+https://github.com/temyers/cucumber-jvm-parallel-plugin  <!-- .element: class="fragment" -->
+https://github.com/damianszczepanik/cucumber-reporting  <!-- .element: class="fragment" -->
 
 But..<!-- .element: class="fragment" -->
 
@@ -178,9 +183,7 @@ But..<!-- .element: class="fragment" -->
 
 ![selenium webdriver](http://www.seleniumframework.com/wp-content/uploads/2015/01/selenium-rc_architecturepng.png)
 
-+++ 
-
-### Discussion
++++
 
 Assumptions:
 1. Already have PC with enough performance(eg, 4 CPU cores with 32GB memory)
@@ -190,8 +193,6 @@ Assumptions:
 What's the Bottleneck of Automation Infrastructure?
 
 +++
-
-### Discussion(Cont.)
 
 - Type, version and number of browsers are limited(can't cover compatibility fully)
 - Can not scale(especially for CI)
@@ -338,13 +339,13 @@ And... <!-- .element: class="fragment" -->
 - **docker -p** command to explicitly map a single port or range of ports.
 
 +++ 
-### Docker 101(Cont.)
-- **docker --link <name or id>**:alias name is the name of the container we’re linking to and alias is an alias for the link name.
+
+- **docker --link \<`name or id`\>:`alias`** `name or id` is the name of the container we’re linking to and `alias` is an alias for the link name.
 - **docker ps** :Shows running containers by default. 
 - **docker kill**: Kill one or more running containers
 - **docker rm**: Remove containers
 
-+++
+---
 
 ### Selenium Grid Docker Images
 
