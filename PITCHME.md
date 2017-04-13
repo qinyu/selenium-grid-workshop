@@ -292,10 +292,13 @@ Is there any other way for paralleling tests?
 
 Is there any tool to ease maintaining work?
 
-- Selenium Grid Extras: https://github.com/groupon/Selenium-Grid-Extras <<!-- .element: class="fragment" -->
-- Jenkins Selenium Plugin: https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin <!-- .element: class="fragment" -->
+> Selenium Grid Extras: https://github.com/groupon/Selenium-Grid-Extras  
+> Jenkins Selenium Plugin: https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin 
+<!-- .element: class="fragment" -->
 
-And...
+And... <!-- .element: class="fragment" -->
+
+---
 
 ### Docker
 
@@ -353,11 +356,11 @@ docker run -d --link selenium-hub:hub -P -p 12346:5900 --name chrome selenium/no
 
 Scale Grid on demand  
 
-- zalenium:
-https://github.com/zalando/zalenium <!-- .element: class="fragment" -->
-
-- Selenium Grid Scaler:
-https://github.com/mhardin/SeleniumGridScaler <<!-- .element: class="fragment" -->
+> zalenium:
+https://github.com/zalando/zalenium  
+>  Selenium Grid Scaler:
+https://github.com/mhardin/SeleniumGridScaler 
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -372,7 +375,7 @@ How much does it coast to maintain Selenium Grid on cloud?
 [Distributed Automation Using Selenium Grid/AWS/Autoscaling](
 https://www.youtube.com/watch?v=cbIfU1fvGeo)
 
-> Comparing AWS cost to Data centre  
+##### Comparing AWS cost to Data centre <!-- .element: class="fragment" -->
 > 1 Medium box (~$8000/per month)  
 > 1 Large box (~$10000/per month)  
 > 1 VM (~$2000/per month)  
