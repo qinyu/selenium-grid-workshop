@@ -158,22 +158,19 @@ Using `maven-surefire-plugin` parallel feature
 </build>
 ```
 
-> **Attention**: Take concurrency problem carefully!
+> **❗️Attention**: Take concurrency problem carefully!
 
 ---
 
 ### Question
 
-Is there any other way for paralleling tests?
+❓Is there any other way for paralleling tests?
 
 - Group tests and run separately in different process  <!-- .element: class="fragment" -->
-  - Take Cucumber for example, you can group test with tags and run with maven plugin `cucumber-jvm-parallel-plugin`  <!-- .element: class="fragment" -->
+  - Take Cucumber for example, you can group test with tags and run with maven plugin [cucumber-jvm-parallel-plugin](https://github.com/temyers/cucumber-jvm-parallel-plugin)<!-- .element: class="fragment" -->
 - Need merge separate tests reports  <!-- .element: class="fragment" -->
-  - Take Cucumber for example, you may use `cucumber-reporting` library
+  - Take Cucumber for example, you may use library [cucumber-reporting](https://github.com/damianszczepanik/cucumber-reporting)
 <!-- .element: class="fragment" -->
-
-https://github.com/temyers/cucumber-jvm-parallel-plugin  <!-- .element: class="fragment" -->
-https://github.com/damianszczepanik/cucumber-reporting  <!-- .element: class="fragment" -->
 
 But..<!-- .element: class="fragment" -->
 
@@ -194,9 +191,9 @@ What's the Bottleneck of Automation Infrastructure?
 
 +++
 
-- Type, version and number of browsers are limited(can't cover compatibility fully)
-- Can not scale(especially for CI)
-- Convinient to debug tests as browser is on the same machine  <!-- .element: class="fragment" -->
+- 👎Type, version and number of browsers are limited(can't cover compatibility fully)
+- 👎Can not scale(especially for CI)
+- 👍Convinient to debug tests as browser is on the same machine  <!-- .element: class="fragment" -->
 
 ---
 
@@ -316,7 +313,7 @@ Configuration.remote = "http://localhost:5000/wd/hub";
 
 ### Question
 
-Is there any tool to ease maintaining work?
+❓Is there any tool to ease maintaining work?
 
 >[Selenium Grid Extras](https://github.com/groupon/Selenium-Grid-Extras)  
 >[Jenkins Selenium Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin)
@@ -390,7 +387,7 @@ Scale Grid on demand
 
 ### Question
 
-How much does it coast to maintain Selenium Grid on cloud?
+❓How much does it coast to maintain Selenium Grid on cloud?
 
 +++
 
@@ -413,7 +410,7 @@ And...<!-- .element: class="fragment" -->
 **BrowserStack** vs. **Sauce Labs** vs. **TestingBot**
 https://stackshare.io/stackups/browserstack-vs-sauce-labs-vs-testingbot
 
-**Selenium Compatibale!**<!-- .element: class="fragment" -->`
+**Selenium Compatibale!**<!-- .element: class="fragment" -->
 
 ---
 
