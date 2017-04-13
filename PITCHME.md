@@ -166,9 +166,11 @@ Using `maven-surefire-plugin` parallel feature
 
 ❓Is there any other way for paralleling tests?
 
-- Group tests and run separately in different process  <!-- .element: class="fragment" -->
++++
+
+- Group tests and run separately in different process even different machine<!-- .element: class="fragment" -->
   - Take Cucumber for example, you can group test with tags and run with maven plugin [cucumber-jvm-parallel-plugin](https://github.com/temyers/cucumber-jvm-parallel-plugin)<!-- .element: class="fragment" -->
-- Need merge separate tests reports  <!-- .element: class="fragment" -->
+- Need merge separate tests reports<!-- .element: class="fragment" -->
   - Take Cucumber for example, you may use library [cucumber-reporting](https://github.com/damianszczepanik/cucumber-reporting)
 <!-- .element: class="fragment" -->
 
@@ -315,8 +317,10 @@ Configuration.remote = "http://localhost:5000/wd/hub";
 
 ❓Is there any tool to ease maintaining work?
 
->[Selenium Grid Extras](https://github.com/groupon/Selenium-Grid-Extras)  
->[Jenkins Selenium Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin)
++++
+
+- [Selenium Grid Extras](https://github.com/groupon/Selenium-Grid-Extras)  
+- [Jenkins Selenium Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin)
 
 And... <!-- .element: class="fragment" -->
 
