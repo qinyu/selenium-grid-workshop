@@ -93,13 +93,13 @@ What's the Bottleneck of Automation Infrastructure?
 
 +++
 
-### Selenium WebDriver Summary
+### Discussion(Cont.)
 
 - Type, version and number of browsers are limited(can't cover compatibility fully)
 - Can not scale(especially for CI)
 - Convinient to debug tests as browser is on the same machine  <!-- .element: class="fragment" -->
 
-+++
+---
 
 ### Selenium Grid
 
@@ -121,7 +121,7 @@ What's the Bottleneck of Automation Infrastructure?
 
 Setup "Remote" and "Distributed" Selenium Grid/Node  
 
-Tips:
+**Tips:**
 https://github.com/SeleniumHQ/selenium/wiki/Grid2
 
 +++
@@ -132,15 +132,6 @@ Command to Start Hub:
 ```sh
 java -jar selenium-server-standalone-3.3.1.jar -role hub
 ```
-
-Check other arguments:  
-```sh
-java -jar selenium-server-standalone-3.3.1.jar -role hub -help
-```
-
-+++
-
-### Key Hub Arguments
 
 +++
 
@@ -159,6 +150,9 @@ java -jar selenium-server-standalone-3.0.1.jar -role node -help
 +++
 
 ### Node Config File
+
+```json
+```
 
 +++
 
@@ -197,7 +191,7 @@ Configuration.remote = "http://localhost:5000/wd/hub";
 
 ---
 
-### Discussion
+### Question
 
 What would prevent us achieving quick feedback in previous demo 
 though Selenium Grid Infrastructure is setup already?
@@ -210,6 +204,7 @@ though Selenium Grid Infrastructure is setup already?
 
 **FAST**<!-- .element: class="fragment" --> **ISOLATED/INDEPENDENT**<!-- .element: class="fragment" --> **REPEATABLE**<!-- .element: class="fragment" --> **SELF-VALIDATING**<!-- .element: class="fragment" --> **THOROUGH/TIMELY**<!-- .element: class="fragment" -->
 
+https://pragprog.com/magazines/2012-01/unit-tests-are-first <<!-- .element: class="fragment" -->
 +++ 
 
 ## Isolated & Repeatable
@@ -229,9 +224,20 @@ Make tests scalable
 
 +++
 
-### Using Setup/Teardown
+### Using "Setup/Teardown"
 
 ```java
+  @Before
+  public void setUp() throws Exception {
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setBrowserName(BrowserType.CHROME);
+    driver = new RemoteWebDriver(new URL("http://localhost:5000/wd/hub"),capabilities);
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+  }
 ```
 
 +++
@@ -274,15 +280,28 @@ Configuration of `maven-surefire-plugin`
 </plugin>
 ```
 
+---
+
 ### Discussion
 
 Is there any other way for paralleling tests?
 
 ---
 
+### Question
+
+Is there any tool to ease maintaining work?
+
+- Selenium Grid Extras: https://github.com/groupon/Selenium-Grid-Extras <<!-- .element: class="fragment" -->
+- Jenkins Selenium Plugin: https://wiki.jenkins-ci.org/display/JENKINS/Selenium+Plugin <!-- .element: class="fragment" -->
+
+And...
+
 ### Docker
 
 +++?image=https://docs.docker.com/engine/article-img/architecture.svg
+
++++
 
 ### Docker 101
 
@@ -301,6 +320,7 @@ Is there any other way for paralleling tests?
 +++
 
 ### Selenium Grid Docker Images
+https://pragprog.com/magazines/2012-01/unit-tests-are-first  
 
 - **selenium/hub**: Image for running a Selenium Grid Hub
 - **selenium/node-chrome-debug**: Selenium node with Chrome installed and runs a VNC server, needs to be connected to a Selenium Grid Hub
@@ -327,9 +347,44 @@ docker run -d --link selenium-hub:hub -P -p 12346:5900 --name chrome selenium/no
 
 +++?gist=a513d69045a3f303301a3c6fe1a7a5b5 
 
+--- 
+
+### One More Thing
+
+Scale Grid on demand  
+
+- zalenium:
+https://github.com/zalando/zalenium <!-- .element: class="fragment" -->
+
+- Selenium Grid Scaler:
+https://github.com/mhardin/SeleniumGridScaler <<!-- .element: class="fragment" -->
+
 ---
 
-### Cloud Testing
+### Question
+
+How much does it coast to maintain Selenium Grid on cloud?
+
++++
+
+### Question(Cont.)
+
+[Distributed Automation Using Selenium Grid/AWS/Autoscaling](
+https://www.youtube.com/watch?v=cbIfU1fvGeo)
+
+> Comparing AWS cost to Data centre  
+> 1 Medium box (~$8000/per month)  
+> 1 Large box (~$10000/per month)  
+> 1 VM (~$2000/per month)  
+> Total AWS cost for Batch Processing Topology  
+>   ~$800/per month  
+<!-- .element: class="fragment" -->
+
+---
+
+### Testing Cloud
+**BrowserStack** vs. **Sauce Labs** vs. **Rainforest QA**
+https://stackshare.io/stackups/browserstack-vs-sauce-labs-vs-testingbot
 
 ---
 
